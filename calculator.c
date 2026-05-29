@@ -1,11 +1,12 @@
 /*
  * Simple Calculator Program
- * Performs basic arithmetic operations: +, -, *, /, %
+ * Performs basic arithmetic operations: +, -, *, /, %, ^ (power)
  * Includes error handling for division and modulo by zero
  */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 // Main function - entry point of the program
 int main()
@@ -21,7 +22,7 @@ int main()
     scanf("%lf", &num1);
 
     // Get operator from user
-    printf("Enter operator (+, -, *, /, %): ");
+    printf("Enter operator (+, -, *, /, %%, ^): ");
     scanf(" %c", &operator);
 
     // Get second number from user
@@ -71,9 +72,14 @@ int main()
             printf("\nResult: %d %% %d = %d\n", (int)num1, (int)num2, (int)result);
         }
         break;
+    case '^':
+        // Power operation (exponential)
+        result = pow(num1, num2);
+        printf("\nResult: %.2f ^ %.2f = %.2f\n", num1, num2, result);
+        break;
     default:
         // Invalid operator
-        printf("\nError: Invalid operator! Please use +, -, *, /, or %%\n");
+        printf("\nError: Invalid operator! Please use +, -, *, /, %%, or ^\n");
     }
 
     return 0; // Exit program successfully
