@@ -1,12 +1,12 @@
 /*
  * Simple Calculator Program
  * Performs basic arithmetic operations: +, -, *, /, %, ^ (power)
- * Includes error handling for division and modulo by zero
+ * Each operator is implemented in its own file for better organization
  */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include "operators.h"
 
 // Main function - entry point of the program
 int main()
@@ -34,47 +34,38 @@ int main()
     {
     case '+':
         // Addition operation
-        result = num1 + num2;
+        result = add(num1, num2);
         printf("\nResult: %.2f + %.2f = %.2f\n", num1, num2, result);
         break;
     case '-':
         // Subtraction operation
-        result = num1 - num2;
+        result = subtract(num1, num2);
         printf("\nResult: %.2f - %.2f = %.2f\n", num1, num2, result);
         break;
     case '*':
         // Multiplication operation
-        result = num1 * num2;
+        result = multiply(num1, num2);
         printf("\nResult: %.2f * %.2f = %.2f\n", num1, num2, result);
         break;
     case '/':
         // Division operation with zero-check
-        if (num2 == 0)
+        result = divide(num1, num2);
+        if (num2 != 0)
         {
-            printf("\nError: Division by zero!\n");
-        }
-        else
-        {
-            result = num1 / num2;
             printf("\nResult: %.2f / %.2f = %.2f\n", num1, num2, result);
         }
         break;
     case '%':
         // Modulo operation with zero-check
-        if ((int)num2 == 0)
+        result = modulo_op(num1, num2);
+        if ((int)num2 != 0)
         {
-            printf("\nError: Modulo by zero!\n");
-        }
-        else
-        {
-            // Convert to integers for modulo operation
-            result = (int)num1 % (int)num2;
             printf("\nResult: %d %% %d = %d\n", (int)num1, (int)num2, (int)result);
         }
         break;
     case '^':
         // Power operation (exponential)
-        result = pow(num1, num2);
+        result = power(num1, num2);
         printf("\nResult: %.2f ^ %.2f = %.2f\n", num1, num2, result);
         break;
     default:
